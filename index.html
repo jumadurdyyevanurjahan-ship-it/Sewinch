@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turkman Milliy Eshiklari | O'ymakorlik va San'at</title>
+    <style>
+        :root {
+            --primary-red: #8B1E1E; /* Turkman gilami qizil rangi */
+            --gold: #D4AF37;        /* Oltin naqsh rangi */
+            --dark-wood: #2C1A12;   /* To'q yog'och rangi */
+            --light-bg: #FAF6F0;    /* Iliq och fon */
+            --text-dark: #1F1F1F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Milliy naqshli chegara (Göller uslubida) */
+        .turkmen-border {
+            height: 12px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--primary-red) 0px,
+                var(--primary-red) 20px,
+                var(--gold) 20px,
+                var(--gold) 25px,
+                var(--dark-wood) 25px,
+                var(--dark-wood) 45px,
+                var(--gold) 45px,
+                var(--gold) 50px
+            );
+        }
+
+        /* Header */
+        header {
+            background-color: var(--dark-wood);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero qismi */
+        .hero {
+            background: linear-gradient(rgba(44, 26, 18, 0.8), rgba(139, 30, 30, 0.8)), 
+                        url('https://unsplash.com') center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            background-color: var(--gold);
+            color: var(--dark-wood);
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e5c150;
+            transform: translateY(-2px);
+        }
+
+        /* Katalog qismi */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Filtr tugmalari */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid var(--primary-red);
+            background: transparent;
+            color: var(--primary-red);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        /* Mahsulotlar setkasi */
+        .doors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .door-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--primary-red);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .door-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .door-img {
+            height: 260px;
+            background-color: #e0d6c8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Eshik vizual imitatsiyasi (rasm o'rniga chiroyli dizayn) */
+        .door-visual {
+            width: 130px;
+            height: 220px;
+            background: var(--dark-wood);
+            border: 6px solid var(--gold);
+            border-radius: 65px 65px 0 0;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .door-visual.rectangular {
+            border-radius: 4px;
+        }
+
+        .door-pattern {
+            width: 70%;
+            height: 35%;
+            border: 2px solid var(--gold);
+            transform: rotate(45deg);
+        }
+
+        .door-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .door-category {
+            font-size: 0.85rem;
+            color: var(--primary-red);
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .door-title {
+            font-size: 1.3rem;
+            margin: 5px 0 10px;
+            color: var(--dark-wood);
+        }
+
+        .door-desc {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .door-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-red);
+        }
+
+        /* Modal (Buyurtma oynasi) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            border-top: 6px solid var(--primary-red);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-wood);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="turkmen-border"></div>
+    <header>
+        <div class="logo">TURKMAN ESHIKLARI</div>
+        <nav>
+            <ul>
+                <li><a href="#catalog">Katalog</a></li>
+                <li><a href="#about">Afzalliklar</a></li>
+                <li><a href="#contact">Aloqa</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+       <!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Cuisine Française — Fransuz Milliy Taomlari</title>
+    <style>
+        /* Asosiy stillar */
+        :root {
+            --primary: #1a2a6c;
+            --secondary: #b21f1f;
+            --accent: #fdbb2d;
+            --bg-light: #f8f9fa;
+            --text-dark: #2c3e50;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Sarlavha qismi (Header) */
+        header {
+            background: linear-gradient(135deg, #002395 0%, #ffffff 50%, #ed2939 100%);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-box {
+            background: rgba(255, 255, 255, 0.92);
+            display: inline-block;
+            padding: 25px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* Qidiruv va Filtr paneli */
+        .controls {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-box input {
+            padding: 12px 20px;
+            width: 280px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            background: #e0e0e0;
+            color: #333;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Taomlar ro'yxati (Grid) */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+        }
+
+        .card-img {
+            height: 180px;
+            background: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            background: linear-gradient(45deg, #f3ec78, #af4261);
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #eef2ff;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .recipe-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .recipe-btn:hover {
+            background: #8e1818;
+        }
+
+        /* Modal oyna (Retsept ko'rish uchun) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 550px;
+            width: 100%;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        .modal h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .modal h4 {
+            margin: 15px 0 8px;
+            color: var(--secondary);
+        }
+
+        .modal ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1a2a6c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-box">
+            <h1>🇫🇷 La Cuisine Française</h1>
+            <p>Fransiyaning mashhur milliy taomlari va retseptlar to'plami</p>
+        </div>
+    </header>
+
+    <div class="controls">
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterDishes('all')">Barchasi</button>
+            <button class="filter-btn" onclick="filterDishes('nonushta')">Nonushta</button>
+            <button class="filter-btn" onclick="filterDishes('asosiy')">Asosiy taomlar</button>
+            <button class="filter-btn" onclick="filterDishes('shirinlik')">Shirinliklar</button>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Taom nomini qidiring..." onkeyup="searchDishes()">
+        </div>
+    </div>
+
+    <div class="container" id="dishesContainer">
+        <!-- Taomlar JavaScript orqali yuklanadi -->
+    </div>
+
+    <!-- Retsept uchun Modal oyna -->
+    <div class="modal" id="recipeModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Taom nomi</h2>
+            <p id="modalDesc" style="color: #555;"></p>
+            <h4>Kerakli masalliqlar:</h4>
+            <ul id="modalIngredients"></ul>
+            <h4>Tayyorlanish usuli:</h4>
+            <p id="modalInstructions"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Fransuz Milliy Taomlari Veb-dasturi</p>
+    </footer>
+
+    <script>
+        // Fransuz taomlari ma'lumotlar bazasi
+        const dishes = [
+            {
+                id: 1,
+                name: "Kruassan (Croissant)",
+                category: "nonushta",
+                categoryName: "Nonushta",
+                icon: "🥐",
+                shortDesc: "Sariyog'li qatlama xamirdan tayyorlanadigan mashhur fransuz pishirig'i.",
+                ingredients: ["500 gr un", "250 gr sovuq sariyog'", "10 gr xamirturush", "250 ml iliq sut", "50 gr shakar", "1 choy qoshiq tuz"],
+                instructions: "Un, shakar, tuz va xamirturushni sut bilan aralashtirib xamir qoring. Xamirni yoyib, ichiga sariyog' soling va bir necha marta buklab muzlatkichda tindiring. Uchburchak shaklda kesib o'rang va 200°C darajada 15-20 daqiqa pishiring."
+            },
+            {
+                id: 2,
+                name: "Ratatuy (Ratatouille)",
+                category: "asosiy",
+                categoryName: "Asosiy taom",
+                icon: "🥘",
+                shortDesc: "Provans hududiga xos bo'lgan sabzavotli mazali va parhezbop taom.",
+                ingredients: ["2 ta baqlajon", "2 ta qovoqcha (sukini)", "4 ta pomidor", "1 ta bulg'or qalampiri", "3 bo'lak sarimsoq", "Zaytun yog'i va Provans o'tlari"],
+                instructions: "Pomidor va bulg'or qalampiridan sous tayyorlab qolip ostiga soling. Baqlajon, qovoqcha va pomidorni halqa shaklida to'g'rab, ketma-ket terib chiqing. Ustiga sarimsoq va zaytun yog'i surtib, duxovkada 40 daqiqa pishiring."
+            },
+            {
+                id: 3,
+                name: "Krem-bryule (Crème Brûlée)",
+                category: "shirinlik",
+                categoryName: "Shirinlik",
+                icon: "🍮",
+                shortDesc: "Usti qarsildoq karamellangan nozik vanilli qaymoqli desert.",
+                ingredients: ["500 ml qaymoq (33%)", "5 ta tuxum sarig'i", "100 gr shakar", "1 choy qoshiq vanil ekstrakti", "Bezak uchun jigarrang shakar"],
+                instructions: "Qaymoqni vanil bilan qizdiring. Tuxum sarig'ini shakar bilan ko'pirtirib, issiq qaymoqni sekin quying. Qolipchalarga quyib, suv hammomida 150°C da 35 daqiqa pishiring. Sovugach ustiga shakar sepib kuydiring."
+            },
+            {
+                id: 4,
+                name: "Fransuzcha piyoz sho'rva",
+                category: "asosiy",
